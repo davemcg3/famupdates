@@ -1,0 +1,10 @@
+<div>
+  <strong><%= display_linked_profile_name post.author %></strong> left a message:<br>
+  <%= post.content %><br>
+  <%= post.created_at %>
+  <% if post.author == current_user.profiles.first %>
+    | <%= link_to "Edit", edit_post_path(post, profile_id: @profile.id) %>
+    | <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+</div>
+<br>

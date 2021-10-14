@@ -1,0 +1,10 @@
+<%= render 'profile_details' %>
+
+<%= link_to "View Wall", profile_path(@profile) %>
+
+<h2>Past Statuses</h2>
+<div id="past_statuses">
+  <% @profile.statuses.map do |status| %>
+    <%= (render 'status', { profile: @profile, status: status }) if @profile.latest_status.present? %>
+  <% end %>
+</div>

@@ -1,0 +1,12 @@
+<%= render 'profile_details' %>
+
+<%= link_to "View Past Statuses", past_statuses_path(@profile) %>
+
+<h2>Wall</h2>
+<%= link_to "Leave Message", new_post_path(profile_id: @profile.id) %>
+<br><br>
+<div id="wall_posts">
+  <% @posts.each do |post| %>
+    <%= render 'post', post: post %>
+  <% end %>
+</div>

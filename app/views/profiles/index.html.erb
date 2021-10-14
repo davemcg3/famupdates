@@ -1,0 +1,27 @@
+<h1>Find Friends</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Bio</th>
+      <th colspan="2">Actions</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @profiles.each do |profile| %>
+      <tr>
+        <td><%= link_to profile.name, profile %></td>
+        <td><%= profile.bio %></td>
+        <td><%= get_follow_path_helper(current_user.profiles.first, profile) %></td>
+        <td><%= get_block_path_helper(current_user.profiles.first, profile) %></td>
+        <% if current_user.profiles.first == profile %>
+          <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+          <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

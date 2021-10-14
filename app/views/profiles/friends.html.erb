@@ -1,0 +1,10 @@
+<h1>Logged-In Homepage</h1>
+
+<h2>Updates</h2>
+<h3>Your Status</h3>
+<%= (render 'status', { profile: current_user.profiles.first, status: current_user.profiles.first.latest_status }) if current_user.profiles.first.latest_status.present? %>
+
+<h3>Your Friends' Statuses</h3>
+<% current_user.profiles.first.following_and_unblocked.map do |profile| %>
+  <%= (render 'status', { profile: profile, status: profile.latest_status }) if profile.latest_status.present? %>
+<% end %>

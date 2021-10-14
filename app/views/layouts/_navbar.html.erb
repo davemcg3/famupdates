@@ -1,0 +1,18 @@
+<% if current_user.present? %>
+  <%= profile_name_with_fallback(current_user) %>
+  <br />
+  <%= link_to "View Fam Statuses", logged_in_homepage_path %>
+  <% if current_user.profiles.present? %>
+    <%= link_to "View Profile", profile_path(current_user.profiles.first) %>
+  <% end %>
+  <%= link_to "Update Your Status", new_status_path %>
+  <%= link_to 'Find New Fam', profiles_path %>
+<% end %>
+<%= navbar_user_link %>
+<%= link_to "Register", new_user_registration_path if current_user.nil? %>
+<% displayed_value = '' %>
+<% flash.each do |key, value| %>
+  <% next if (value == displayed_value) %>
+  <% displayed_value = value %>
+  <div class="alert alert-<%= key %> <%= key %>"><%= value %></div>
+<% end %>

@@ -1,0 +1,7 @@
+<% if current_user.profiles.first.blocking?(@profile) %>
+  <%= render "blocking" %>
+<% elsif @profile.blocking?(current_user.profiles.first) %>
+  <%= render "blocked" %>
+<% else %>
+  <%= render "unblocked" %>
+<% end %>

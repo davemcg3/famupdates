@@ -1,0 +1,8 @@
+<div>
+  <strong><%= display_linked_profile_name profile %></strong> is <%= status.content %><br>
+  <%= status.created_at %>
+  <% if status.profile == current_user.profiles.first %>
+    | <%= link_to "Edit", edit_status_path(status) %>
+    | <%= link_to 'Destroy', status, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+</div>

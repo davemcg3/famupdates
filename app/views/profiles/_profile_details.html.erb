@@ -1,0 +1,15 @@
+<%= link_to 'Edit', edit_profile_path(@profile) if current_user.profiles.first == @profile %>
+<%= get_follow_path_helper(current_user.profiles.first, @profile) %>
+<%= get_block_path_helper(current_user.profiles.first, @profile) %>
+<%#= link_to 'Back', profiles_path %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @profile.name %>
+</p>
+
+<p>
+  <strong>Bio:</strong>
+  <%= @profile.bio %>
+</p>
+

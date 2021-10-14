@@ -1,0 +1,30 @@
+rails new famupdates -d postgresql --skip-test-unit --skip-turbolinks --skip-spring
+
+# user auth
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-twitter'
+
+# user authentication
+# gem 'cancancan'
+
+bundle
+rails db:setup
+rails db:migrate
+rails g devise:install
+config/environments/development.rb:
+config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+rails g devise user
+rails db:migrate
+rails g scaffold profiles name:string bio:text
+rails db:migrate
+rails g migration CreateJoinTableProfilesUsers profile user
+rails db:migrate
+rails g scaffold statuses content:text profile:references
+rails g scaffold posts content:text profile:references
+rails g migration CreateJoinTableForFollowers profiles profiles
+Adjusted the created migration manually, check file
+rails g migration CreateJoinTableForBlocks profiles profiles
+Adjusted the created migration manually, check file
+rails db:migrate
+

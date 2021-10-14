@@ -48,6 +48,20 @@ RSpec.describe 'Profile Actions' do
       expect(page).to have_text("Content: #{edited_text}")
     end
 
+    it 'should be able to delete own status update' do
+      visit '/'
+      register(email01, password01, name01, bio01)
+      create_status(status01)
+      click_on 'View Profile'
+      click_on 'View Past Statuses'
+      within '#past_statuses' do
+        click_on 'Destroy', match: :first
+      end
+      page.driver.browser.switch_to.alert.accept
+      expect(page).not_to have_text(status01)
+      expect(page).to have_text('Status was successfully destroyed.')
+    end
+
     it 'should be able to create a wall post' do
       visit '/'
       register(email01, password01, name01, bio01)
@@ -79,6 +93,23 @@ RSpec.describe 'Profile Actions' do
       end
       expect(page).to have_text('Post was successfully updated.')
       expect(page).to have_text("Content: #{edited_text}")
+    end
+
+    it 'should be able to delete authored wall post' do
+      visit '/'
+      register(email01, password01, name01, bio01)
+      create_status(status01)
+      logout
+      register(email02, password02, name02, bio02)
+      expect(page).to have_text(bio01)
+      click_on name01
+      create_post(post01)
+      within '#wall_posts' do
+        click_on 'Destroy'
+      end
+      page.driver.browser.switch_to.alert.accept
+      expect(page).not_to have_text(post01)
+      expect(page).to have_text('Post was successfully destroyed.')
     end
 
     it 'should be able to follow and unfollow another user' do

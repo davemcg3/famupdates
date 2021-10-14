@@ -7,7 +7,7 @@ class PostPolicy < ApplicationPolicy
     creator_is_actor?
   end
 
-  def delete?
+  def destroy?
     creator_is_actor?
   end
 end

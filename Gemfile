@@ -34,6 +34,18 @@ gem 'omniauth-twitter', '~> 1.4.0'
 # user authorization
 gem 'pundit', '~> 2.1.1'
 
+# parse Twitter Cards information from websites
+# gem 'twitter_cards', '~> 0.1'
+
+# define or map attributes in your ActiveRecord models for Open Graph, Twitter Cards, or any other custom meta tags
+# investigate if we want to share data from individual models
+# gem 'acts_as_shareable_object'
+
+# this gem _should_ do everything I want but development on it died back in Rails 4 days
+# allows for setting and retrieving HTML meta tags including default, per controller, per model options
+# gem 'meta_tags', git: "git://github.com/vala/meta_tags.git"
+# gem 'meta_tags', git: "git://github.com/vala/meta_tags.git", require: File.expand_path('../lib/monkey_patch/meta_tags/view_helpers.rb', __FILE__)
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

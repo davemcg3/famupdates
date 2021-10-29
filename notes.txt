@@ -28,3 +28,9 @@ rails g migration CreateJoinTableForBlocks profiles profiles
 Adjusted the created migration manually, check file
 rails db:migrate
 
+TODO: Things to look at below
+https://3rd-edition.railstutorial.org/book/following_users
+https://www.seancdavis.com/blog/bi-directional-has-and-belongs-to-many-on-a-single-model-in-rails/
+https://guides.rubyonrails.org/association_basics.html#self-joins
+https://rmiverson.medium.com/allowing-users-to-follow-users-self-join-tables-in-ruby-on-rails-4595d9fb878e
+

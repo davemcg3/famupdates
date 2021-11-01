@@ -7,9 +7,11 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.3",
     "webpack": "^5.61.0",
-    "webpack-cli": "^4.9.1"
+    "webpack-cli": "^4.9.1",
+    "babel": "^5.8.23",
+    "babel-core": "^5.0.0",
+    "babel-loader": "^5.3.2"
   },
-  "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^4.4.0"
   },
@@ -18,5 +20,6 @@
     "chokidar": "^3.4.0",
     "nth-check": "^2.0.1",
     "set-value": "^4.0.1"
-  }
+  },
+  "version": "0.1.0"
 }

@@ -46,6 +46,12 @@ gem 'pundit', '~> 2.1.1'
 # gem 'meta_tags', git: "git://github.com/vala/meta_tags.git"
 # gem 'meta_tags', git: "git://github.com/vala/meta_tags.git", require: File.expand_path('../lib/monkey_patch/meta_tags/view_helpers.rb', __FILE__)
 
+# For accessing hash attributes through dot notation
+gem 'hash_dot', '~> 2.5.0'
+
+# For using a .env file
+gem 'dotenv-rails', '~> 2.7'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

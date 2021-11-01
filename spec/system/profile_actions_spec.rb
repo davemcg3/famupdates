@@ -159,6 +159,16 @@ RSpec.describe 'Profile Actions' do
       expect(page).to have_text(bio01)
     end
 
+    it 'should show users being followed even if they do not have a status' do
+      visit '/'
+      register(email01, password01, name01, bio01)
+      logout
+      register(email02, password02, name02, bio02)
+      click_on 'Follow'
+      click_on 'View Fam Statuses'
+      expect(page).to have_text(name01)
+    end
+
     it 'should allow user to view own profile' do
       visit '/'
       register(email01, password01, name01, bio01)

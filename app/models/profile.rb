@@ -62,4 +62,7 @@ class Profile < ApplicationRecord
     blocked_ids = blockers_ids.union(blocking_ids)
     blocked_ids.blank? ? Profile.all : Profile.all.where.not(id: blocked_ids)
   end
+
+  scope :alphabetized_asc, -> { order(name: :asc) }
+  scope :alphabetized_desc, -> { order(name: :desc) }
 end

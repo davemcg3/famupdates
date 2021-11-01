@@ -8,7 +8,7 @@ gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 5.5'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -45,6 +45,12 @@ gem 'pundit', '~> 2.1.1'
 # allows for setting and retrieving HTML meta tags including default, per controller, per model options
 # gem 'meta_tags', git: "git://github.com/vala/meta_tags.git"
 # gem 'meta_tags', git: "git://github.com/vala/meta_tags.git", require: File.expand_path('../lib/monkey_patch/meta_tags/view_helpers.rb', __FILE__)
+
+# For accessing hash attributes through dot notation
+gem 'hash_dot', '~> 2.5.0'
+
+# For using a .env file
+gem 'dotenv-rails', '~> 2.7'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

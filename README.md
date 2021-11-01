@@ -54,7 +54,7 @@ Create a new release branch:
 Merge your feature branch to the release branch. 
 
 #### Test the release
-Pull the release branch down locally. Run specs. Run the server locally and click around making sure you can login, create a new status, create a new wall post, logout. 
+Pull the release branch down locally. Run specs. Run the server locally and click around making sure you can register, login, create a new status, create a new wall post, logout. 
 
 #### Deploy the release
 Open a pull request from the release branch to main. Merging to main will autodeploy to Heroku through Heroku pipelines. There is no CI/CD currently so when you are ready to deploy just merge.

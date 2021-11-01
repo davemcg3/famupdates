@@ -5,6 +5,6 @@
 <%= (render 'status', { profile: current_user.profiles.first, status: current_user.profiles.first.latest_status }) if current_user.profiles.first.latest_status.present? %>
 
 <h3>Your Friends' Statuses</h3>
-<% current_user.profiles.first.following_and_unblocked.map do |profile| %>
-  <%= (render 'status', { profile: profile, status: profile.latest_status }) if profile.latest_status.present? %>
+<% current_user.profiles.first.following_and_unblocked.alphabetized_asc.map do |profile| %>
+  <%= (render 'status', { profile: profile, status: profile.latest_status || { content: '', created_at: '' } }) %>
 <% end %>

@@ -7,13 +7,10 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.3",
     "webpack": "^4.46.0",
-    "webpack-cli": "^4.9.1",
-    "babel": "^5.8.23",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5"
+    "webpack-cli": "^3.3.12"
   },
   "devDependencies": {
-    "webpack-dev-server": "^4.4.0"
+    "webpack-dev-server": "^3"
   },
   "resolutions": {
     "ansi-regex": "^5.0.1",

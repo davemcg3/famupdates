@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
       # profiles = [ProfileService.new(current_user).create(name: current_user.email)]
       # logger.debug profiles.inspect
       return new_profile_path
+    elsif profiles.first.username.nil?
+      return edit_profile_path(profiles.first)
     end
 
     # logger.debug profiles.inspect

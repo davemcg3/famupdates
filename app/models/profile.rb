@@ -12,6 +12,8 @@ class Profile < ApplicationRecord
   has_many :passive_exclusions, class_name: "Exclusion", foreign_key: "blocked_id", dependent: :destroy
   has_many :blockers, through: :passive_exclusions, source: :blocker
 
+  validates :username, presence: true, uniqueness: true
+
   # Follows a user.
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)

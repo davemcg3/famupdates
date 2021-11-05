@@ -1,4 +1,4 @@
-def register(email, password, name, bio)
+def register(email, password, name, bio, username)
   click_on 'Register'
   fill_in 'user_email', with: email
   fill_in 'user_password', with: password
@@ -7,6 +7,7 @@ def register(email, password, name, bio)
   expect(page).to have_text('New Profile')
   fill_in 'profile_name', with: name
   fill_in 'profile_bio', with: bio
+  fill_in 'profile_username', with: username
   click_on 'Create Profile'
   expect(page).to have_text('Profile was successfully created.')
 end
@@ -23,3 +24,11 @@ def logout
   expect(page).to have_text('Signed out successfully.')
 end
 
+def directly_create_user(email, password, name, bio, username)
+  Rails.logger.debug username
+  user = User.create!(email: email, password: password)
+  profile = username.present? ? Profile.new(name: name, bio: bio, username: username) : Profile.new(name: name, bio: bio)
+  profile.save!(validate: username.present?)
+  ProfilesUser.new(user: user, profile: profile).save!
+  user
+end

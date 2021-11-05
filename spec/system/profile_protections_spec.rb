@@ -7,6 +7,7 @@ RSpec.describe 'Profile Actions' do
   password01 = '123456'
   name01 = 'test 01'
   bio01 = 'test 01 bio'
+  username01 = 'test01'
   status01 = 'test 01 first status'
   status02 = 'test 02 second status'
   post01 = 'Wall message'
@@ -14,14 +15,15 @@ RSpec.describe 'Profile Actions' do
   password02 = '123456'
   name02 = 'test 02'
   bio02 = 'test 02 bio'
+  username02 = 'test02'
 
   context "destruction of other people's property" do
     before do
       visit '/'
-      register(email01, password01, name01, bio01)
+      register(email01, password01, name01, bio01, username01)
       create_status(status01)
       logout
-      register(email02, password02, name02, bio02)
+      register(email02, password02, name02, bio02, username02)
       expect(page).to have_text(bio01)
     end
 
@@ -36,7 +38,7 @@ RSpec.describe 'Profile Actions' do
       expect(status.destroyed?).to be_falsey
     end
 
-    # TODO: this is a bad test, will likely need to test this through another means
+    # TODO: this is a bad test, leave UI verification of ability not exposed, move functionality to API test
     xit "should not be able to destroy another user's wall post" do
       click_on name01
       create_post(post01)
@@ -54,7 +56,7 @@ RSpec.describe 'Profile Actions' do
       expect(post.destroyed?).to be_falsey
     end
 
-    # TODO: this is a bad test, will likely need to test this through another means
+    # TODO: this is a bad test, leave UI verification of ability not exposed, move functionality to API test
     it "should not be able to destroy another user's profile" do
       visit profiles_path
       expect(page).not_to have_link('Destroy')
@@ -69,10 +71,10 @@ RSpec.describe 'Profile Actions' do
   context "editing of other people's property" do
     before do
       visit '/'
-      register(email01, password01, name01, bio01)
+      register(email01, password01, name01, bio01, username01)
       create_status(status01)
       logout
-      register(email02, password02, name02, bio02)
+      register(email02, password02, name02, bio02, username02)
       expect(page).to have_text(bio01)
     end
 
@@ -86,10 +88,11 @@ RSpec.describe 'Profile Actions' do
 
     it "should not be able to edit another user's wall post" do
       click_on name01
-      create_post(post01)
+      create_post(post01) # TODO: Capture post id here to use later in test
       logout
       login email01, password01
       # Not a good way to write this spec but the UI doesn't allow you to get here
+      # Post.last.id will potentially fail or fail to properly test when tests are parallelized in CI/CD
       visit edit_post_path(Post.last.id, profile_id: Profile.find_by(name: name01).id)
       # click_on 'View Profile'
       # within '#wall_posts' do

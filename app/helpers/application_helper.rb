@@ -12,6 +12,6 @@ module ApplicationHelper
   end
 
   def profile_name_with_fallback(current_user)
-    current_user.profiles&.first&.name || current_user.email
+    current_user.profiles&.first&.name || current_user.profiles&.first&.username || current_user.email
   end
 end

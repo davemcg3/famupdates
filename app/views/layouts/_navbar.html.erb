@@ -3,7 +3,7 @@
   <br />
   <%= link_to "View Fam Statuses", logged_in_homepage_path %>
   <% if current_user.profiles.present? %>
-    <%= link_to "View Profile", profile_path(current_user.profiles.first) %>
+    <%= link_to "View Profile", profile_path(username: current_user.profiles.first&.username || current_user.profiles.first&.id) %>
   <% end %>
   <%= link_to "Update Your Status", new_status_path %>
   <%= link_to 'Find New Fam', profiles_path %>

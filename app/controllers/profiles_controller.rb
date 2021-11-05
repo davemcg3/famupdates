@@ -99,17 +99,22 @@ class ProfilesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_profile
     begin
-      profile_to_find = params[:id] || current_user.profiles.first.id
-      @profile = Profile.find(profile_to_find)
-      # current_user.current_profile << @profile
-      # @profile
+      # profile_to_find = params[:id] || current_user.profiles.first.id
+      # @profile = Profile.find(profile_to_find)
+      # This will also grab an id as the username param if an id was sent instead of a username in the route
+      profile_to_find = params[:username] || current_user.profiles.first&.username
+      begin
+        @profile = Profile.find_by!(username: profile_to_find)
+      rescue ActiveRecord::RecordNotFound => e
+        @profile = Profile.find(profile_to_find) # try as an id
+      end
     rescue ActiveRecord::RecordNotFound => e
-      redirect_to new_profile_path
+      raise ActionController::RoutingError.new('Not Found')
     end
   end
 
   # Only allow a list of trusted parameters through.
   def profile_params
-    params.require(:profile).permit(:name, :bio)
+    params.require(:profile).permit(:name, :bio, :username)
   end
 end

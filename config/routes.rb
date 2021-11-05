@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :statuses
   get '/profiles/friends', to: 'profiles#friends', as: :logged_in_homepage
-  resources :profiles
+  resources :profiles, param: :username
   resources :relationships, only: [:create, :destroy]
   resources :exclusions, only: [:create, :destroy]
   get 'profiles/load_profile/:id', to: 'profiles#load_profile', as: 'load_profile'

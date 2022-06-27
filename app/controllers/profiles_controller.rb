@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_profile, only: %i[ show edit update destroy friends statuses ]
+  before_action :set_profile, only: %i[ show edit update destroy ]
+  before_action :set_profile_by_id, only: %i[ statuses ]
 
   # GET /profiles or /profiles.json
   def index
@@ -97,17 +98,23 @@ class ProfilesController < ApplicationController
 
   private
   # Use callbacks to share common setup or constraints between actions.
+
   def set_profile
+    # profile_to_find = params[:id] || current_user.profiles.first.id
+    # @profile = Profile.find(profile_to_find)
+    # This will also grab an id as the username param if an id was sent instead of a username in the route
     begin
-      # profile_to_find = params[:id] || current_user.profiles.first.id
-      # @profile = Profile.find(profile_to_find)
-      # This will also grab an id as the username param if an id was sent instead of a username in the route
-      profile_to_find = params[:username] || current_user.profiles.first&.username
-      begin
-        @profile = Profile.find_by!(username: profile_to_find)
-      rescue ActiveRecord::RecordNotFound => e
-        @profile = Profile.find(profile_to_find) # try as an id
-      end
+      # 1 || 2 are for not statuses
+      # 3 is for statuses # TODO: Consider breaking this check out into a different method
+      @profile = Profile.find_by(username: params[:username]) || Profile.find_by(id: params[:username])
+    rescue ActiveRecord::RecordNotFound => e
+      raise ActionController::RoutingError.new('Not Found')
+    end
+  end
+
+  def set_profile_by_id
+    begin
+      @profile = Profile.find(params[:id])
     rescue ActiveRecord::RecordNotFound => e
       raise ActionController::RoutingError.new('Not Found')
     end

@@ -20,10 +20,10 @@ RSpec.describe 'Profile Actions' do
   context "destruction of other people's property" do
     before do
       visit '/'
-      register(email01, password01, name01, bio01, username01)
+      register_spec_helper(email01, password01, name01, bio01, username01)
       create_status(status01)
-      logout
-      register(email02, password02, name02, bio02, username02)
+      logout_spec_helper
+      register_spec_helper(email02, password02, name02, bio02, username02)
       expect(page).to have_text(bio01)
     end
 
@@ -42,8 +42,8 @@ RSpec.describe 'Profile Actions' do
     xit "should not be able to destroy another user's wall post" do
       click_on name01
       create_post(post01)
-      logout
-      login email01, password01
+      logout_spec_helper
+      login_spec_helper email01, password01
       post = Post.last
       # Not a good way to write this spec but the UI doesn't allow you to get here
       delete "/posts/#{post.id}"
@@ -71,10 +71,10 @@ RSpec.describe 'Profile Actions' do
   context "editing of other people's property" do
     before do
       visit '/'
-      register(email01, password01, name01, bio01, username01)
+      register_spec_helper(email01, password01, name01, bio01, username01)
       create_status(status01)
-      logout
-      register(email02, password02, name02, bio02, username02)
+      logout_spec_helper
+      register_spec_helper(email02, password02, name02, bio02, username02)
       expect(page).to have_text(bio01)
     end
 
@@ -89,8 +89,8 @@ RSpec.describe 'Profile Actions' do
     it "should not be able to edit another user's wall post" do
       click_on name01
       create_post(post01) # TODO: Capture post id here to use later in test
-      logout
-      login email01, password01
+      logout_spec_helper
+      login_spec_helper email01, password01
       # Not a good way to write this spec but the UI doesn't allow you to get here
       # Post.last.id will potentially fail or fail to properly test when tests are parallelized in CI/CD
       visit edit_post_path(Post.last.id, profile_id: Profile.find_by(name: name01).id)

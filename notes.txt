@@ -34,3 +34,6 @@ https://www.seancdavis.com/blog/bi-directional-has-and-belongs-to-many-on-a-sing
 https://guides.rubyonrails.org/association_basics.html#self-joins
 https://rmiverson.medium.com/allowing-users-to-follow-users-self-join-tables-in-ruby-on-rails-4595d9fb878e
 
+
+People don't buy what you do, they buy why you do it. Revamp the logged-out homepage to sell based on why fampudates exists.
+Why -> How -> What

@@ -1,18 +1,6 @@
 RSpec.describe 'Profile Actions' do
   context '' do
-    it 'should not be able to register a new profile without a username' do
-
-    end
-
-    it 'existing profiles without a username should go to edit profile on login' do
-
-    end
-
     it 'existing profiles without a username should have all existing functionality operational' do
-
-    end
-
-    it 'links pointing to an existing profile without a username should all work' do
 
     end
 
@@ -20,7 +8,7 @@ RSpec.describe 'Profile Actions' do
 
     end
 
-    it 'should display a the name of a user' do
+    it 'should display the name of a user' do
 
     end
 

@@ -8,6 +8,7 @@ module ApplicationHelper
   end
 
   def display_linked_profile_name(profile)
+    Rails.logger.debug profile.inspect
     link_to profile.name, profile_path(profile)
   end
 
